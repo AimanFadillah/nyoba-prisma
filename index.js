@@ -2,6 +2,23 @@ const {PrismaClient} = require("@prisma/client")
 
 const prisma = new PrismaClient()
 
+const buah = await prisma.barang.findFirst({include:{kategori:{include:{kategori:true}}}})
+console.log(buah.kategori)
+
+// await prisma.kategoriOnBarang.create({
+//     data:{
+//         barang_id:"94499595-8636-47df-9d59-5c1d9a05daa4",
+//         kategori_id:"7b9b9eed-e06a-433b-83f1-dba718334de1",
+//     }
+// })
+
+// await prisma.kategori.create({
+//     data:{nama:"sehat"}
+// })
+
+// const user = await prisma.user.findFirst({where:{id:"8bf917dc-3c8b-4c67-8578-bedbca79e69e"},include:{barangs:true}})
+// console.log(user)
+
 // await prisma.user.create({
 //     data:{
 //         nama:"budi"
@@ -13,24 +30,13 @@ const prisma = new PrismaClient()
 //     data:{nama:"naruto"}
 // })
 
-// await prisma.user.delete({where:{id:"fb55d32b-2f8e-444f-8d72-f96823f1e51d"}})
+// // await prisma.user.delete({where:{id:"fb55d32b-2f8e-444f-8d72-f96823f1e51d"}})
 
 // const barang = await prisma.barang.create({
 //     data:{
-//         nama:"apple",
-//         jumlah:100,
-//         user_id:"fb55d32b-2f8e-444f-8d72-f96823f1e51d"
+//         nama:"jeruk",
+//         jumlah:12,
+//         user_id:"8bf917dc-3c8b-4c67-8578-bedbca79e69e"
 //     }
 // })
 
-// const barang = await prisma.barang.update({
-//     where:{
-//         id:"966e1690-10ef-4dc6-8881-c63ee50e2428"
-//     },
-//     data:{
-//         nama:"apple",
-//         jumlah:100
-//     }
-// })
-
-// console.log(barang)

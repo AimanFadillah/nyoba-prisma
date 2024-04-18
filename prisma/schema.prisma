@@ -40,10 +40,27 @@ model Barang {
   jumlah Int
   user User @relation(fields: [user_id],references: [id],onDelete: Cascade)
   user_id String
+  kategori kategoriOnBarang[]
 }
 
 model User {
   id String @id @default(uuid())
   nama String
   barangs Barang[]
+}
+
+model Kategori {
+  id String @id @default(uuid())
+  nama String
+  barang kategoriOnBarang[]
+}
+
+model kategoriOnBarang {
+  barang Barang @relation(fields: [barang_id],references: [id],onDelete: Cascade)
+  barang_id String
+  kategori Kategori @relation(fields: [kategori_id],references: [id],onDelete: Cascade)
+  kategori_id String
+  created_at DateTime @default(now())
+  
+  @@id([barang_id,kategori_id])
 }
